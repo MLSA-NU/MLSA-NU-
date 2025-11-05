@@ -143,30 +143,35 @@
         const spinner = document.getElementById('spinner');
         const successMsg = document.getElementById('success-message');
         const errorMsg = document.getElementById('error-message');
-
+        
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             submitBtn.disabled = true;
             btnText.classList.add('hidden');
             spinner.classList.remove('hidden');
             hideMessages();
-
+        
             const payload = {
-                first_name: form.first_name.value,
-                last_name: form.last_name.value,
-                email: form.email.value,
-                phone: form.phone.value,
-                nu_id: form.nu_id.value,
+                first_name: form.first_name.value.trim(),
+                last_name: form.last_name.value.trim(),
+                email: form.email.value.trim().toLowerCase(),
+                phone: form.phone.value.trim() || null,
+                nu_id: form.nu_id.value.trim(),
                 major: form.major.value,
                 year: form.year.value,
                 track: form.track.value
             };
-
+        
+            // Quick validation
+            if (!payload.email || !payload.first_name || !payload.last_name) {
+                throw new Error('Please fill required fields');
+            }
+        
             try {
-                const res = await fetch('https://api.github.com/repos/MLSA-NU/MLSA-NU-/dispatches', {
+                // Try GitHub dispatch (anonymous works for public repos)
+                const res = await fetch(`https://api.github.com/repos/MLSA-NU/MLSA-NU-/dispatches`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': 'Bearer ${{ secrets.GH_PAT }}',
                         'Accept': 'application/vnd.github.v3+json',
                         'Content-Type': 'application/json'
                     },
@@ -175,15 +180,16 @@
                         client_payload: payload
                     })
                 });
-
-                if (res.ok) {
-                    showMessage(successMsg);
-                    form.reset();
-                } else {
-                    throw new Error('GitHub dispatch failed');
+        
+                if (!res.ok) {
+                    // Fallback: Direct to Turso (but needs CORS fix—use workflow only)
+                    throw new Error(`GitHub error: ${res.status} - ${res.statusText}`);
                 }
+        
+                showMessage(successMsg);
+                form.reset();
             } catch (err) {
-                console.error(err);
+                console.error('Submission error:', err);
                 showMessage(errorMsg);
             } finally {
                 submitBtn.disabled = false;
@@ -191,7 +197,7 @@
                 btnText.classList.remove('hidden');
             }
         });
-
+        
         function showMessage(el) {
             el.classList.remove('hidden');
             setTimeout(() => el.classList.remove('opacity-0', '-translate-y-4'), 10);
@@ -202,7 +208,7 @@
                 el.classList.add('opacity-0', '-translate-y-4');
                 setTimeout(() => el.classList.add('hidden'), 500);
             });
-        }
-    </script>
+    }
+</script>
 </body>
 </html>

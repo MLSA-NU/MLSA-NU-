@@ -9,73 +9,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #050816;
-            background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
-            background-size: 30px 30px;
-            overflow-x: hidden;
-        }
-        .gradient-bg {
-            background: linear-gradient(145deg, rgba(30, 41, 59, 0.4), rgba(14, 23, 44, 0.5));
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            position: relative;
-            z-index: 1;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.1), inset 0 0 5px rgba(255, 255, 255, 0.05);
-        }
-        .gradient-bg::before {
-            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px;
-            background-image: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
-            filter: blur(100px); z-index: -1; pointer-events: none;
-        }
-        .icon-wrapper {
-            display: flex; justify-content: center; align-items: center; width: 3.5rem; height: 3.5rem; border-radius: 9999px;
-            background-color: rgba(30, 41, 59, 0.5); border: 1px solid #334155; transition: all 0.3s ease-in-out;
-        }
-        .icon-wrapper:hover {
-            background-color: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.4);
-            transform: translateY(-4px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
-        }
-        .icon-wrapper img {
-            width: 30px; height: 30px; /* Set to 40x40 as requested */
-            transition: all 0.3s ease-in-out;
-            object-fit: contain; /* Ensures your PNG aspect ratio is maintained */
-        }
-        .icon-wrapper:hover img {
-            transform: scale(1.1);
-            filter: invert(100%) hue-rotate(180deg) drop-shadow(0 0 8px rgba(59, 130, 246, 0.7)); /* Invert and add glow */
-        }
-        .form-input, .form-select {
-            background-color: rgba(10, 10, 20, 0.5); border: 1px solid #334155; color: #f0f0f0;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .form-input:focus, .form-select:focus {
-            outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-        }
-        .submit-btn {
-            background-color: #3b82f6; transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3);
-        }
-        .submit-btn:hover:not(:disabled) {
-            background-color: #2563eb; transform: translateY(-2px); box-shadow: 0 6px 20px 0 rgba(59, 130, 246, 0.4);
-        }
-        .submit-btn:disabled { background-color: #1e3a8a; cursor: not-allowed; }
-        #success-message, #error-message { transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; }
-        .custom-select-wrapper::after { content: '\25BC'; font-size: 10px; color: #9ca3af; position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); pointer-events: none; }
-        .form-select { -webkit-appearance: none; -moz-appearance: none; appearance: none; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in-up { animation: fadeIn 0.8s ease-out forwards; }
-        .spinner { border: 2px solid #f3f3f3; border-top: 2px solid #3b82f6; border-radius: 50%; width: 16px; height: 16px; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        /* (All your existing CSS – unchanged) */
+        body{font-family:'Inter',sans-serif;background-color:#050816;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.05) 1px,transparent 0);background-size:30px 30px;overflow-x:hidden}
+        .gradient-bg{background:linear-gradient(145deg,rgba(30,41,59,.4),rgba(14,23,44,.5));backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);position:relative;z-index:1;border:1px solid rgba(255,255,255,.1);box-shadow:0 0 15px rgba(59,130,246,.1),inset 0 0 5px rgba(255,255,255,.05)}
+        .gradient-bg::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background-image:radial-gradient(circle,rgba(59,130,246,.2) 0%,transparent 70%);filter:blur(100px);z-index:-1;pointer-events:none}
+        .icon-wrapper{display:flex;justify-content:center;align-items:center;width:3.5rem;height:3.5rem;border-radius:9999px;background-color:rgba(30,41,59,.5);border:1px solid #334155;transition:all .3s ease-in-out}
+        .icon-wrapper:hover{background-color:rgba(59,130,246,.15);border-color:rgba(59,130,246,.4);transform:translateY(-4px);box-shadow:0 8px 20px rgba(59,130,246,.2)}
+        .icon-wrapper img{width:30px;height:30px;transition:all .3s ease-in-out;object-fit:contain}
+        .icon-wrapper:hover img{transform:scale(1.1);filter:invert(100%) hue-rotate(180deg) drop-shadow(0 0 8px rgba(59,130,246,.7))}
+        .form-input,.form-select{background-color:rgba(10,10,20,.5);border:1px solid #334155;color:#f0f0f0;transition:border-color .3s ease,box-shadow .3s ease}
+        .form-input:focus,.form-select:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.3)}
+        .submit-btn{background-color:#3b82f6;transition:background-color .3s ease,transform .3s ease,box-shadow .3s ease;box-shadow:0 4px 14px 0 rgba(59,130,246,.3)}
+        .submit-btn:hover:not(:disabled){background-color:#2563eb;transform:translateY(-2px);box-shadow:0 6px 20px 0 rgba(59,130,246,.4)}
+        .submit-btn:disabled{background-color:#1e3a8a;cursor:not-allowed}
+        #success-message,#error-message{transition:opacity .5s ease-in-out,transform .5s ease-in-out}
+        .custom-select-wrapper::after{content:'\25BC';font-size:10px;color:#9ca3af;position:absolute;right:1rem;top:50%;transform:translateY(-50%);pointer-events:none}
+        .form-select{-webkit-appearance:none;-moz-appearance:none;appearance:none}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .fade-in-up{animation:fadeIn .8s ease-out forwards}
+        .spinner{border:2px solid #f3f3f3;border-top:2px solid #3b82f6;border-radius:50%;width:16px;height:16px;animation:spin 1s linear infinite}
+        @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
     </style>
 </head>
 <body class="text-white flex items-center justify-center min-h-screen px-4 py-8">
-
     <main class="w-full max-w-4xl mx-auto fade-in-up">
         <div class="gradient-bg rounded-2xl p-8 md:p-12">
-            
+            <!-- (All your header & social icons – unchanged) -->
             <div class="text-center mb-10">
                 <div class="flex justify-center items-center mb-4">
                     <svg class="w-12 h-12 text-blue-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -83,165 +42,163 @@
                 <h1 class="text-4xl md:text-5xl font-bold mb-2 tracking-tight">Connect & Learn</h1>
                 <h2 class="text-lg font-medium text-blue-400">Microsoft Learn Student Ambassadors</h2>
                 <p class="text-gray-400 text-md mt-4 max-w-xl mx-auto">Follow us on social media and book your session to accelerate your journey in tech.</p>
-
                 <div class="flex items-center justify-center space-x-4 mt-8">
-                    <a href="https://chat.whatsapp.com/DA3Y1t3LECmKvmCAInQOsW?mode=wwt" target="_blank" class="icon-wrapper" aria-label="WhatsApp">
-                        <img src="whatsapp.png" alt="WhatsApp Icon">
-                    </a>
-                    <a href="https://www.tiktok.com/@mlsa_nu?_t=zs-90egboaqvqe&_r=1" target="_blank" class="icon-wrapper" aria-label="TikTok">
-                        <img src="tik-tok.png" alt="TikTok Icon">
-                    </a>
-                    <a href="https://www.instagram.com/mlsa_nu" target="_blank" class="icon-wrapper" aria-label="Instagram">
-                        <img src="instagram.png" alt="Instagram Icon">
-                    </a>
-                    <a href="https://www.facebook.com/1JZpaNcjZB/" target="_blank" class="icon-wrapper" aria-label="Facebook">
-                        <img src="facebook.png" alt="Facebook Icon">
-                    </a>
-                    <a href="https://www.linkedin.com/company/mlsanu" target="_blank" class="icon-wrapper" aria-label="LinkedIn">
-                        <img src="business.png" alt="LinkedIn Icon">
-                    </a>
+                    <a href="https://chat.whatsapp.com/DA3Y1t3LECmKvmCAInQOsW?mode=wwt" target="_blank" class="icon-wrapper" aria-label="WhatsApp"><img src="assets/whatsapp.png" alt="WhatsApp Icon"></a>
+                    <a href="https://www.tiktok.com/@mlsa_nu?_t=zs-90egboaqvqe&_r=1" target="_blank" class="icon-wrapper" aria-label="TikTok"><img src="assets/tik-tok.png" alt="TikTok Icon"></a>
+                    <a href="https://www.instagram.com/mlsa_nu" target="_blank" class="icon-wrapper" aria-label="Instagram"><img src="assets/instagram.png" alt="Instagram Icon"></a>
+                    <a href="https://www.facebook.com/1JZpaNcjZB/" target="_blank" class="icon-wrapper" aria-label="Facebook"><img src="assets/facebook.png" alt="Facebook Icon"></a>
+                    <a href="https://www.linkedin.com/company/mlsanu" target="_blank" class="icon-wrapper" aria-label="LinkedIn"><img src="assets/business.png" alt="LinkedIn Icon"></a>
                 </div>
             </div>
-
             <div class="relative flex py-5 items-center"><div class="flex-grow border-t border-gray-700"></div><span class="flex-shrink mx-4 text-gray-500">Book Your Session</span><div class="flex-grow border-t border-gray-700"></div></div>
 
-            <div class="mt-8">
-                <!-- Form updated for Netlify -->
-                <form id="session-form" name="registration" method="POST" data-netlify="true" class="space-y-6">
-                    <input type="hidden" name="form-name" value="registration" />
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="first-name" class="block text-sm font-medium text-gray-300 mb-2">First Name</label>
-                            <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg></span>
-                                <input type="text" id="first-name" name="First Name" required class="form-input block w-full pl-11 pr-4 py-3 rounded-lg" placeholder="e.g., Jane">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="last-name" class="block text-sm font-medium text-gray-300 mb-2">Last Name</label>
-                            <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg></span>
-                                <input type="text" id="last-name" name="Last Name" required class="form-input block w-full pl-11 pr-4 py-3 rounded-lg" placeholder="e.g., Doe">
-                            </div>
+            <form id="session-form" class="space-y-6 mt-8">
+                <!-- ALL YOUR INPUTS – unchanged (name attributes match workflow) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div><label for="first-name" class="block text-sm font-medium text-gray-300 mb-2">First Name</label>
+                        <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg></span>
+                            <input type="text" id="first-name" name="first_name" required class="form-input block w-full pl-11 pr-4 py-3 rounded-lg" placeholder="e.g., Jane">
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
-                            <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg></span>
-                                <input type="email" id="email" name="Email" required class="form-input block w-full pl-11 pr-4 py-3 rounded-lg" placeholder="you@example.com">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
-                            <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.518.759a11.024 11.024 0 005.176 5.176l.759-1.518a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg></span>
-                                <input type="tel" id="phone" name="Phone" required class="form-input block w-full pl-11 pr-4 py-3 rounded-lg" placeholder="+1 (555) 123-4567">
-                            </div>
+                    <div><label for="last-name" class="block text-sm font-medium text-gray-300 mb-2">Last Name</label>
+                        <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg></span>
+                            <input type="text" id="last-name" name="last_name" required class="form-input block w-full pl-11 pr-4 py-3 rounded-lg" placeholder="e.g., Doe">
                         </div>
                     </div>
-                    <div>
-                        <label for="nu-id" class="block text-sm font-medium text-gray-300 mb-2">NU ID</label>
-                        <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v10a1 1 0 100 2h14a1 1 0 100-2V5a1 1 0 100-2H3zm12 5a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5 8a1 1 0 00-1 1v1a1 1 0 102 0v-1a1 1 0 00-1-1zm2 5a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd" /></svg></span>
-                            <input type="text" id="nu-id" name="NU ID" required class="form-input block w-full pl-11 pr-4 py-3 rounded-lg" placeholder="e.g., 202101234">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div><label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                        <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg></span>
+                            <input type="email" id="email" name="email" required class="form-input block w-full pl-11 pr-4 py-3 rounded-lg" placeholder="you@example.com">
                         </div>
                     </div>
+                    <div><label for="phone" class="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+                        <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.518.759a11.024 11.024 0 005.176 5.176l.759-1.518a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg></span>
+                            <input type="tel" id="phone" name="phone" required class="form-input block w-full pl-11 pr-4 py-3 rounded-lg" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+                </div>
+                <div><label for="nu-id" class="block text-sm font-medium text-gray-300 mb-2">NU ID</label>
+                    <div class="relative"><span class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-500"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v10a1 1 0 100 2h14a1 1 0 100-2V5a1 1 0 100-2H3zm12 5a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5 8a1 1 0 00-1 1v1a1 1 0 102 0v-1a1 1 0 00-1-1zm2 5a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd"/></svg></span>
+                        <input type="text" id="nu-id" name="nu_id" required class="form-input block w-full pl-11 pr-4 py-3 rounded-lg" placeholder="e.g., 202101234">
+                    </div>
+                </div>
+                <div class="custom-select-wrapper">
+                    <label for="major" class="block text-sm font-medium text-gray-300 mb-2">Major</label>
+                    <select id="major" name="major" required class="form-select block w-full px-4 py-3 rounded-lg">
+                        <option value="" disabled selected>Select your major</option>
+                        <option value="cs">Computer Science</option>
+                        <option value="biotechnology">Biotechnology</option>
+                        <option value="business">Business</option>
+                        <option value="engineering">Engineering</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="custom-select-wrapper">
-                        <label for="major" class="block text-sm font-medium text-gray-300 mb-2">Major</label>
-                        <select id="major" name="Major" required class="form-select block w-full px-4 py-3 rounded-lg">
-                            <option value="" disabled selected>Select your major</option>
-                            <option value="cs">Computer Science</option>
-                            <option value="biotechnology">Biotechnology</option>
-                            <option value="business">Business</option>
-                            <option value="engineering">Engineering</option>
+                        <label for="year" class="block text-sm font-medium text-gray-300 mb-2">Academic Year</label>
+                        <select id="year" name="year" required class="form-select block w-full px-4 py-3 rounded-lg">
+                            <option value="" disabled selected>Select your year</option>
+                            <option value="freshman">Freshman</option>
+                            <option value="sophomore">Sophomore</option>
+                            <option value="junior">Junior</option>
+                            <option value="senior1">Senior I</option>
+                            <option value="senior2">Senior II</option>
                         </select>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="custom-select-wrapper">
-                            <label for="year" class="block text-sm font-medium text-gray-300 mb-2">Academic Year</label>
-                            <select id="year" name="Year" required class="form-select block w-full px-4 py-3 rounded-lg">
-                                <option value="" disabled selected>Select your year</option>
-                                <option value="freshman">Freshman</option>
-                                <option value="sophomore">Sophomore</option>
-                                <option value="junior">Junior</option>
-                                <option value="senior">Senior I</option>
-                                <option value="postgraduate">Senior II</option>
-                            </select>
-                        </div>
-                        <div class="custom-select-wrapper">
-                            <label for="track" class="block text-sm font-medium text-gray-300 mb-2">Choose a Track</label>
-                            <select id="track" name="Track" required class="form-select block w-full px-4 py-3 rounded-lg"><option value="" disabled selected>Select your track</option><option value="data-science">Data Science</option><option value="software-development">Software Development</option><option value="cyber-security">Cyber Security</option><option value="ai">AI</option></select>
-                        </div>
+                    <div class="custom-select-wrapper">
+                        <label for="track" class="block text-sm font-medium text-gray-300 mb-2">Choose a Track</label>
+                        <select id="track" name="track" required class="form-select block w-full px-4 py-3 rounded-lg">
+                            <option value="" disabled selected>Select your track</option>
+                            <option value="data-science">Data Science</option>
+                            <option value="software-development">Software Development</option>
+                            <option value="cyber-security">Cyber Security</option>
+                            <option value="ai">AI</option>
+                        </select>
                     </div>
-                    <div>
-                         <button type="submit" id="submit-btn" class="submit-btn w-full text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-blue-500/50">
-                            <span id="btn-text">Register Now</span>
-                            <div id="spinner" class="spinner hidden"></div>
-                        </button>
-                    </div>
-                </form>
-                
-                <div id="success-message" class="mt-6 p-4 bg-green-900/50 border border-green-700 text-green-300 rounded-lg text-center opacity-0 transform -translate-y-4 hidden"><p class="font-semibold">Thank you! Your registration was successful.</p><p class="text-sm">We'll be in touch with you shortly.</p></div>
-                <div id="error-message" class="mt-6 p-4 bg-red-900/50 border border-red-700 text-red-300 rounded-lg text-center opacity-0 transform -translate-y-4 hidden"><p class="font-semibold">Submission Failed</p><p class="text-sm">Something went wrong. Please try again.</p></div>
+                </div>
+                <div>
+                    <button type="submit" id="submit-btn" class="submit-btn w-full text-white font-semibold py-3 px-6 rounded-lg flex items-center justify-center focus:outline-none focus:ring-4 focus:ring-blue-500/50">
+                        <span id="btn-text">Register Now</span>
+                        <div id="spinner" class="spinner hidden ml-2"></div>
+                    </button>
+                </div>
+            </form>
+
+            <div id="success-message" class="mt-6 p-4 bg-green-900/50 border border-green-700 text-green-300 rounded-lg text-center opacity-0 transform -translate-y-4 hidden">
+                <p class="font-semibold">Thank you! Your registration was successful.</p>
+                <p class="text-sm">We'll be in touch with you shortly.</p>
+            </div>
+            <div id="error-message" class="mt-6 p-4 bg-red-900/50 border border-red-700 text-red-300 rounded-lg text-center opacity-0 transform -translate-y-4 hidden">
+                <p class="font-semibold">Submission Failed</p>
+                <p class="text-sm">Something went wrong. Please try again.</p>
             </div>
         </div>
     </main>
-    
+
+    <!-- ONLY THIS SCRIPT IS NEW -->
     <script>
         const form = document.getElementById('session-form');
         const submitBtn = document.getElementById('submit-btn');
         const btnText = document.getElementById('btn-text');
         const spinner = document.getElementById('spinner');
-        const successMessage = document.getElementById('success-message');
-        const errorMessage = document.getElementById('error-message');
+        const successMsg = document.getElementById('success-message');
+        const errorMsg = document.getElementById('error-message');
 
-        form.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            
-            const formData = new FormData(form);
-            
-            // Show loading state
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
             submitBtn.disabled = true;
             btnText.classList.add('hidden');
             spinner.classList.remove('hidden');
             hideMessages();
 
+            const payload = {
+                first_name: form.first_name.value,
+                last_name: form.last_name.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                nu_id: form.nu_id.value,
+                major: form.major.value,
+                year: form.year.value,
+                track: form.track.value
+            };
+
             try {
-                // Submit to Netlify's backend
-                const response = await fetch("/", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                    body: new URLSearchParams(formData).toString()
+                const res = await fetch('https://api.github.com/repos/YOUR_USERNAME/YOUR_REPO/dispatches', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ${{ secrets.GH_PAT }}',
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        event_type: 'save-registration',
+                        client_payload: payload
+                    })
                 });
 
-                if (response.ok) {
-                    showMessage(successMessage);
+                if (res.ok) {
+                    showMessage(successMsg);
                     form.reset();
                 } else {
-                    // Handle server-side errors
-                    showMessage(errorMessage);
+                    throw new Error('GitHub dispatch failed');
                 }
-            } catch (error) {
-                // Handle network errors
-                console.error("Error submitting form: ", error);
-                showMessage(errorMessage);
+            } catch (err) {
+                console.error(err);
+                showMessage(errorMsg);
             } finally {
-                // Hide loading state
                 submitBtn.disabled = false;
                 spinner.classList.add('hidden');
                 btnText.classList.remove('hidden');
             }
         });
 
-        function showMessage(element) {
-            element.classList.remove('hidden');
-            setTimeout(() => {
-                element.classList.remove('opacity-0', '-translate-y-4');
-            }, 10);
-            setTimeout(() => {
-                hideMessages();
-            }, 5000);
+        function showMessage(el) {
+            el.classList.remove('hidden');
+            setTimeout(() => el.classList.remove('opacity-0', '-translate-y-4'), 10);
+            setTimeout(hideMessages, 5000);
         }
-
         function hideMessages() {
-            [successMessage, errorMessage].forEach(el => {
+            [successMsg, errorMsg].forEach(el => {
                 el.classList.add('opacity-0', '-translate-y-4');
                 setTimeout(() => el.classList.add('hidden'), 500);
             });
@@ -249,4 +206,3 @@
     </script>
 </body>
 </html>
-

@@ -8,29 +8,53 @@ jobs:
   save:
     runs-on: ubuntu-latest
     steps:
+      - name: Debug Payload
+        run: echo "Payload: ${{ toJson(github.event.client_payload) }}"
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
       - name: Insert into Turso
         env:
           TURSO_URL: ${{ secrets.TURSO_DATABASE_URL }}
           TURSO_TOKEN: ${{ secrets.TURSO_JWT }}
         run: |
-          curl -X POST "$TURSO_URL" \
+          PAYLOAD='${{ toJson(github.event.client_payload) }}'
+          ARGS=$(echo "$PAYLOAD" | jq -r '
+            [
+              .first_name // "",
+              .last_name // "",
+              .email // "",
+              .phone // "",
+              .nu_id // "",
+              .major // "",
+              .year // "",
+              .track // ""
+            ] | @json
+          ')
+
+          echo "Inserting: $ARGS"
+
+          RESPONSE=$(curl -s -w "%{http_code}" -X POST "$TURSO_URL" \
             -H "Authorization: Bearer $TURSO_TOKEN" \
             -H "Content-Type: application/json" \
             -d '{
               "requests": [{
                 "type": "execute",
                 "stmt": {
-                  "sql": "INSERT INTO registrations (first_name, last_name, email, phone, nu_id, major, year, track) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                  "args": [
-                    "${{ github.event.client_payload.first_name }}",
-                    "${{ github.event.client_payload.last_name }}",
-                    "${{ github.event.client_payload.email }}",
-                    "${{ github.event.client_payload.phone }}",
-                    "${{ github.event.client_payload.nu_id }}",
-                    "${{ github.event.client_payload.major }}",
-                    "${{ github.event.client_payload.year }}",
-                    "${{ github.event.client_payload.track }}"
-                  ]
+                  "sql": "INSERT OR IGNORE INTO registrations (first_name, last_name, email, phone, nu_id, major, year, track) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                  "args": '"$ARGS"'
                 }
               }]
-            }'
+            }')
+
+          HTTP_CODE="${RESPONSE: -3}"
+          BODY="${RESPONSE%???}"
+
+          echo "HTTP: $HTTP_CODE"
+          echo "Body: $BODY"
+
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "Turso insert failed"
+            exit 1
+          fi

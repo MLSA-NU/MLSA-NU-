@@ -1,0 +1,36 @@
+name: Save Registration to Turso
+
+on:
+  repository_dispatch:
+    types: [save-registration]
+
+jobs:
+  save:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Insert into Turso
+        env:
+          TURSO_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_TOKEN: ${{ secrets.TURSO_JWT }}
+        run: |
+          curl -X POST "$TURSO_URL" \
+            -H "Authorization: Bearer $TURSO_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "requests": [{
+                "type": "execute",
+                "stmt": {
+                  "sql": "INSERT INTO registrations (first_name, last_name, email, phone, nu_id, major, year, track) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                  "args": [
+                    "${{ github.event.client_payload.first_name }}",
+                    "${{ github.event.client_payload.last_name }}",
+                    "${{ github.event.client_payload.email }}",
+                    "${{ github.event.client_payload.phone }}",
+                    "${{ github.event.client_payload.nu_id }}",
+                    "${{ github.event.client_payload.major }}",
+                    "${{ github.event.client_payload.year }}",
+                    "${{ github.event.client_payload.track }}"
+                  ]
+                }
+              }]
+            }'
